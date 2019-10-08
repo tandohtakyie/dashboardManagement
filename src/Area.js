@@ -19,7 +19,7 @@ class Area extends React.PureComponent {
          fetch('http://10.24.24.28:8080/get', { method: 'GET' })
             .then(response => response.json() )
             .then(data => data.sort((a, b) => {
-                return new Date(a.date) - new Date(b.date);
+                return new Date(a.time) - new Date(b.time);
               }))
             .then((responseJson) => {
                 console.log(responseJson);
@@ -41,15 +41,15 @@ class Area extends React.PureComponent {
       data.map((item, index) => (
         <Circle
           key={index}
-          cx={x(moment(item.date))}
-          cy={y(item.score)}
+          cx={x(moment(item.time))}
+          cy={y(item.smiley)}
           r={6}
           stroke={color}
           fill="white"
           onPress={() =>
             this.setState({
-              tooltipX: moment(item.date),
-              tooltipY: item.score,
+              tooltipX: moment(item.time),
+              tooltipY: item.smiley,
               tooltipIndex: index,
             })
             }
@@ -63,8 +63,8 @@ class Area extends React.PureComponent {
             <AreaChart
               style={{ height: '70%' }}
               data={data}
-              yAccessor={({ item }) => item.score}
-              xAccessor={({ item }) => moment(item.date)}
+              yAccessor={({ item }) => item.smiley}
+              xAccessor={({ item }) => moment(item.time)}
               contentInset={contentInset}
               svg={{ fill: '#003F5A' }}
               numberOfTicks={10}
@@ -99,7 +99,7 @@ class Area extends React.PureComponent {
               </Text>
             </View>
           )}
-          <Text style={styles.heading}>Tooltip Area Chart</Text>
+          <Text style={styles.heading}>Dates</Text>
         </View>
       </SafeAreaView>
     );
