@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 
-export default class Dashboard_Activity extends Component {
+export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
     title: 'Dashboard',
   };
